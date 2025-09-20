@@ -47,6 +47,7 @@ def create_user(db: db_dependency, user_request: UserCreate):
         email=user_request.email,
         hashed_password=bcrypt_context.hash(user_request.hashed_password),
         role=user_request.role,
+        phone_number=user_request.phone_number,
         is_active=user_request.is_active
     )
     db.add(user)
