@@ -16,6 +16,7 @@ class User(Base):
     hashed_password = Column(String(255), nullable=False)
     role = Column(String(50), nullable=False)
     is_active = Column(Boolean, default=True)
+    phone_number = Column(String(20), nullable=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
 
@@ -27,7 +28,9 @@ class UserBase(BaseModel):
     email: EmailStr
     role: str
     is_active: bool = True
+    phone_number: Optional[str] = None
 
+    
 class UserCreate(UserBase):
     hashed_password: str
 
