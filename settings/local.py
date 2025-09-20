@@ -1,0 +1,5 @@
+DB_PASSWORD = "mysql_password"
+DB_NAME = "mysql_database"
+DB_HOST = "mysql_host"
+DB_PORT = "mysql_port"
+DB_USER = "mysql_user"
