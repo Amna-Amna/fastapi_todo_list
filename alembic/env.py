@@ -5,11 +5,10 @@ from sqlalchemy import pool
 
 from alembic import context
 import sys
-from pathlib import Path
-
-current_dir = Path(__file__).resolve().parent
-project_root = current_dir.parent.parent
-sys.path.insert(0, str(project_root))
+import os
+PACKAGE_PARENT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+REPO_ROOT = os.path.dirname(PACKAGE_PARENT)
+sys.path.insert(0, REPO_ROOT)
 
 from fastapi_todo_list.database_conn import Base
 import fastapi_todo_list.models
