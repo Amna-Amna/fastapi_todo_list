@@ -1,11 +1,14 @@
 from fastapi import FastAPI, HTTPException
 from starlette import status
-from .routers import auth, users
+from .routers import auth, users, todos
+
 
 app = FastAPI()
 
 app.include_router(auth.router)
 app.include_router(users.router)
+app.include_router(todos.router)
+
 
 @app.get("/health_check", status_code=status.HTTP_200_OK)
 def health_check():

@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Boolean, DateTime
+from sqlalchemy import Column, Integer, String, Boolean, DateTime, ForeignKey
 from sqlalchemy.sql import func
 from pydantic import BaseModel, EmailStr
 from typing import Optional
@@ -41,3 +41,16 @@ class UserResponse(UserBase):
     
     class Config:
         from_attributes = True
+
+    
+class Todos(Base):
+    __tablename__ = "todos"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    title = Column(String(100), nullable=False)
+    description = Column(String(255), nullable=False)
+    priority = Column(Integer, nullable=False)
+    completed = Column(Boolean, default=False)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    updated_at = Column(DateTime(timezone=True), onupdate=func.now())
+    owner_id = Column(Integer, ForeignKey("users.id"), nullable=False)
